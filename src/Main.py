@@ -33,11 +33,19 @@ class PyMongoWrappers:
     def testDatabase(self, ):
         return self.connection['test_database']
 
+    def listMyDatabase(self,):
+        """
+        The methods return the list of the database that connection has accessed
+        """
+        listOfDatabase = []
+        for db in self.connection.list_databases():
+            listOfDatabase.append(db['name'])
+        return listOfDatabase
+
     def searchData(self, data):
         pass
 
 
 
-connection = PyMongoWrappers()
-
-print(type(connection.testDatabase()))
+connection = PyMongoWrappers("mongodb://localhost:27017/")
+print(connection.testDatabase())
