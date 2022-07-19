@@ -1,7 +1,7 @@
 # Written By: Yosia Lukumai || github.com/yosiaLukumai
-# from Main import PyMongoWrappers
-class Schema:
+import PyMongoose
 
+class Schema(PyMongoose.PyMongoose):
     """
     This creates a prototype structure of the given  database object to be stored in the given collection 
     This collection will be used and  passed all of the attributes during inserting
@@ -9,25 +9,21 @@ class Schema:
     This will be taken from the Collection Level,
     """
     defaultKeys = ['dtype', 'req', 'default']
+    defaultValues = [str, bool, None]
     Schema = {}
     passedConstruction = False
 
-   
-    def __init__(self, data:dict,nameOfSchema:str, timeStamp=True):
+    def __init__(self, data:dict, timeStamp=True):
+        PyMongoose.PyMongoose.__init__(self)
         # let validate the data before allowing it to enter the model then one will be validating it
-        self.name = nameOfSchema
         self.keys = []
-        self.defaultKeys = ['dtype', 'req', 'default']
-        self.defaultValues = [str, bool, None]
+        
         self.passedConstruction = self.checkKeyWords(data)
         if(self.passedConstruction):
             self.Schema = data
         else:
             exit(-1)
         
-
-       
-
     
     def checkKeyWords(self, data: dict):
         # print(data['A'])
@@ -169,42 +165,60 @@ class Schema:
             except Exception as e:
                 print(">>> A required field is missing value check your Schema for more comparison")
                 exit(-1)
+
+            return True
+        
+
+        def createOne(self, data:dict):
+            validation = self.validateSchema(data)
+            if(validation and self.connectionSuccesful):
+                pass
+        
+        def bulkInsert(self, data:list):
+            pass
+
+        def searchOne(self, condition: dict):
+            pass
+                
+
+                
+
+            
         
 
 
-# User = {
-#     'Attributes':[{ "Name": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "email": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "date": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "tradition": {
-#         "dtype": str,
-#         "req": False,
-#         "default": 'uji na chai'},}
-#         ]
-# }
+User = {
+    'Attributes':[{ "Name": {
+        "dtype": str,
+        "req": True,
+        "default": None
+        }},
+        { "email": {
+        "dtype": str,
+        "req": True,
+        "default": None
+        }},
+        { "date": {
+        "dtype": str,
+        "req": True,
+        "default": None
+        }},
+        { "tradition": {
+        "dtype": str,
+        "req": False,
+        "default": 'uji na chai'},}
+        ]
+}
 
-# newData = {
-#     "Name": "Yosia",
-#     'date': '12/3/2002',
-#     'email': 'yosiaLukumai@gmail.com',
-# }
+newData = {
+    "Name": "Yosia",
+    'date': '12/3/2002',
+    'email': 'yosiaLukumai@gmail.com',
+}
 
-# NewChema = Schema(User)
+# NewChema = Schema(User, 'Users')
 
 # NewChema.validateSchema(newData)
+
 # if __name__ == "__main__":
 #     pass
-
-
