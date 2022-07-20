@@ -14,6 +14,11 @@ Schema can access pymongo Object method the Shema are Collection Level,
 Let Bring the Mongoose Flavour.
 
 
+## ***Requirements || dependecies***
+pymongo >= 3.0
+
+
+# Usage
 ## ***Configuration***
 Create a folder with the database configuration then pass
 database name and url or name only
@@ -193,4 +198,8 @@ Just Use the attribute inside the Schema the collection attribute example
 
 
 
+## Powered By: Yosia Lukumai
 
+Github Account: <https://github.com/yosiaLukumai>
+
+Email me trough: <a href = "mailto:yosialukumai.com?subject = Feedback&body = Message">yosiadev@gmail.com</a>
