@@ -1,3 +1,22 @@
+Metadata-Version: 2.1
+Name: PyMongooses
+Version: 0.0.5
+Summary: PyMongoose enable you to validate your SChema and setting them default values it Give you Schema Object that give you easier accesbility of pymongo collection 
+Home-page: https://github.com/yosiaLukumai/pymongo-wrappers
+Author: Yosia Lukumai
+Author-email: yosialukumai@gmail.com
+License: MIT
+Keywords: pythonmongodb,py_mongoose,Py_Mongoose,mongoosepy,pymongo,Schemavalidator,ShemaChecker
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+License-File: Licence
+
 # **Powerful python library like Mongoose**
 
 
@@ -203,3 +222,5 @@ Just Use the attribute inside the Schema the collection attribute example
 Github Account: <https://github.com/yosiaLukumai>
 
 Email me trough: <a href = "mailto:yosialukumai.com?subject = Feedback&body = Message">yosiadev@gmail.com</a>
+
+
