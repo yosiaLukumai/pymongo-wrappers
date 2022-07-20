@@ -1,6 +1,7 @@
 # Written By: Yosia Lukumai || github.com/yosiaLukumai
 from pymongo.errors import ConnectionFailure
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 class Schema:
     """
@@ -23,6 +24,8 @@ class Schema:
             self.Schema = data
         else:
             exit(-1)
+        if(self.connection.connected):
+            self.collection = self.connection.db[self.schemaName]
         
     
     def checkKeyWords(self, data: dict):
@@ -201,7 +204,7 @@ class Schema:
             if(validation and self.connection.connected):
                 collection = self.connection.db[self.schemaName]
                 res = collection.insert_many(data)
-                return res.acknowledged
+                return res
 
         except Exception as e:
             print(e.args[0])
@@ -221,7 +224,7 @@ class Schema:
             if(self.connection.connected):
                 collection = self.connection.db[self.schemaName]
                 res = collection.delete_one(credentials)
-                return res.deleted_count
+                return res
             else:
                 raise Exception("The client isn't connected")
         
@@ -242,59 +245,122 @@ class Schema:
             if(self.connection.connected):
                 collection = self.connection.db[self.schemaName]
                 res = collection.delete_many(credential)
-                return res.deleted_count
+                return res
             else:
                 raise Exception("The client isn't connected")
         
         except Exception as e:
             print(e.args[0])
             print(">>> Invalid Query Recheck the credentials")
+    
+
+    # Searching queries
+    def find(self, credential: dict):
+        """
+        The fuction return the document obtained from the given search Query
+        Args:
+                credenttials example Users.find({"name": "Yosia"})
+        Return:
+            pymongo.cursor.Cursor with some array for the given data to be found
+        """
+        try:
+            if(self.connection.connected):
+                collection = self.connection.db[self.schemaName]
+                res = collection.find(credential)
+                return res
+            else:
+                raise Exception("The client isn't connected")
+        
+        except Exception as e:
+            print(e.args[0])
+            print(">>> Invalid Query Recheck the credentials Or Server Connection")
+
+    def findOne(self, credential: dict):
+        """
+        The fuction return the document obtained from the given search Query
+        Args:
+                credenttials example Users.findOne({"name": "Yosia"})
+        Return:
+            pymongo.cursor.Cursor with some array for the given data to be found
+        """
+        try:
+            if(self.connection.connected):
+                collection = self.connection.db[self.schemaName]
+                res = collection.find_one(credential)
+                return res
+            else:
+                raise Exception("The client isn't connected")
+        
+        except Exception as e:
+            print(e.args[0])
+            print(">>> Invalid Query Recheck the credentials Or Server Connection")
+
+    # Updating functions
+
+    def updateOne(self, credential:dict, newData:dict):
+        """
+        The methods can update one of the docs according to the query passed
+        Args:
+            credentials type: dict Ex: Users.updateOne({"Name"})
+        """
+        try:
+            if(self.connection.connected):
+                collection = self.connection.db[self.schemaName]
+                # construction the update Query
+                updatingCondition = {"$set": newData}
+                res = collection.update_one(credential, updatingCondition)
+                return res
+            else:
+                raise Exception("The client isn't connected")
+        
+        except Exception as e:
+            print(e.args[0])
+            print(">>> Invalid Query Recheck the credentials Or Server Connection")
+
+    
+    def updateMany(self, credential: dict, newData:dict):
+        """
+        The methods updates all of the document that passes the conditon of the credentials
+        Args:
+                credential: dict and NewData:dict
+        """
+        try:
+            if(self.connection.connected):
+                collection = self.connection.db[self.schemaName]
+                # construction the update Query
+                updatingCondition = {"$set": newData}
+                res = collection.update_many(credential, updatingCondition)
+                return res
+            else:
+                raise Exception("The client isn't connected")
+        
+        except Exception as e:
+            print(e.args[0])
+            print(">>> Invalid Query Recheck the credentials Or Server Connection")
+    
+
+    def findById(self, id:str):
+        """
+        The method returns the Object obtained after passing the id
+        Args: 
+            id: Users.finfById("4562dfn612hdsmf")
+        return:
+            PyMongo Object
+        """
+        try:
+            if(self.connection.connected):
+                collection = self.connection.db[self.schemaName]
+                # construction the update Query
+                credential = {"_id": ObjectId(id)}
+                res = collection.find_one(credential)
+                return res
+            else:
+                raise Exception("The client isn't connected")
+        
+        except Exception as e:
+            print(e.args[0])
+            print(">>> Invalid Query Recheck the credentials Or Server Connection")
 
     
                                 
             
-# User = {
-#     'Attributes':[{ "Name": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "email": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "date": {
-#         "dtype": str,
-#         "req": True,
-#         "default": None
-#         }},
-#         { "tradition": {
-#         "dtype": str,
-#         "req": False,
-#         "default": 'uji na chai'},}
-#         ]
-# }
-
-# newData = {
-#     "Name": "Yosia",
-#     'date': '12/3/2002',
-#     'email': 'yosiaLukumai@gmail.com',
-# }
-
-# NewChema = Schema(User, 'Users')
-
-# NewChema.validateSchema(newData)
-# if __name__ == "__main__":
-#     pass
-
-
-
-
-
-
-# newData = {
-#     "Name": "Yosia",
-#     'date': '12/3/2002',
-#     'email': 'yosiaLukumai@gmail.com',
-# }
