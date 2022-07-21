@@ -9,7 +9,7 @@ long_description = (this_directory / "README.md").read_text()
 
 # Setting up
 setup(
-    name = 'PyMongooses',
+    name = 'PyDbSchema',
     version = "0.0.5",
     author = "Yosia Lukumai",
     author_email = "yosialukumai@gmail.com",

@@ -1,7 +1,7 @@
 # **Powerful python library like Mongoose**
 
 
-## ***PyMongooses Features***
+## ***PyDbSchema Features***
 The library enable one to create Schema validates the Schema.
 
 The Library will also insert the Default values when one provided
@@ -24,10 +24,10 @@ Create a folder with the database configuration then pass
 database name and url or name only
 
         # import the module
-        import PyMongooses
-        PyMongooses.connect(<DatabaseName: str>)
+        import PyDbSchema
+        PyDbSchema.connect(<DatabaseName: str>)
         # Test if the database if connected
-        if PyMongooses.connection.connected:
+        if PyDbSchema.connection.connected:
             print("Connected")
 
 So by this one folder all the database Configuration are ready
@@ -40,7 +40,7 @@ Note: This code mostly should be at the top so as to enable Schema to access con
 Create a folder and insert all of your model Rules here 
 
         # For Example here
-        import PyMongooses
+        import PyDbSchema
         User = {
         'Attributes':[{ "Name": {
         "dtype": str,
@@ -55,7 +55,7 @@ Create a folder and insert all of your model Rules here
         }
 
         ## Creating the Schema
-        User = PyMongooses.Schema(<Skelrton:dict>, <NameSchema: str>)
+        User = PyDbSchema.Schema(<Skelrton:dict>, <NameSchema: str>)
         # The Schema object is Collection Object by nature and pymongo methods can be used in itds
 
 
@@ -66,7 +66,7 @@ but Crud( Create Read Update Delete) operation are easier as follows
 
 
 ## ***Creating***
-Note: Advantages of PyMongooses is that it's Schema are validated and default value are passed if not there
+Note: Advantages of PyDbSchema is that it's Schema are validated and default value are passed if not there
 ### **Methods**
 
 Model.insertOne(data<dic>)     -> # Insert One object passed into the collection Used

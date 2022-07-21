@@ -4,8 +4,8 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir) 
 
 
-from PyMongoose.Schema import Schema
-from PyMongoose.Main import Main
+from PyDbSchema.Schema import Schema
+from PyDbSchema.Main import Main
 connection = None
 Schema.connection = connection
 
