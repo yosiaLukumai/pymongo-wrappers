@@ -1,0 +1,11 @@
+Licence
+README.md
+setup.py
+PyDbSchema/Main.py
+PyDbSchema/Schema.py
+PyDbSchema/__init__.py
+PyDbSchema.egg-info/PKG-INFO
+PyDbSchema.egg-info/SOURCES.txt
+PyDbSchema.egg-info/dependency_links.txt
+PyDbSchema.egg-info/requires.txt
+PyDbSchema.egg-info/top_level.txt
